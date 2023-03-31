@@ -4,6 +4,11 @@
 body{
     font-family: 'Roboto', sans-serif;
     background-color: #E5E5E5;
+    -ms-overflow-style: none;   /* esconder scroll IE e Edge */
+    scrollbar-width: none;      /* esconder scroll Firefox */
+}
+body::-webkit-scrollbar{  /*esconder scroll Chrome, Safari and Opera*/
+    display: none;
 }
 .topo{
     height: 92px;
@@ -13,6 +18,7 @@ body{
     position: fixed;
     top: 0px;
     left: 0px;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -38,6 +44,7 @@ body{
 }
 main{
     margin-top: 123px;
+    margin-bottom: 108px;
 }
 h2{
     margin-top: 27px;
@@ -53,18 +60,29 @@ h2{
 main > div{
     margin-top: 17px;
     width: 100%;
-    height: 216px;
-    overflow: auto;
+    height: fit-content;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    padding-right: 16px;
+    -ms-overflow-style: none;   /* esconder scroll IE e Edge */
+    scrollbar-width: none;      /* esconder scroll Firefox */
+}
+main > div::-webkit-scrollbar{  /*esconder scroll Chrome, Safari and Opera*/
+    display: none;
 }
 .item{
     width: 172px;
-    height: 216px;
+    min-width: 172px;
+    height: 100%;
     background-color: #fff;
     box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.25);
     border-radius: 9px;
     margin-left: 16px;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 0;
 }
 .item img{
     width: 144px;
@@ -99,5 +117,45 @@ main > div{
     font-size: 16px;
     line-height: 19px;
     margin-left: 14px;
-    margin-top: 5px;
+    margin-top: 9px;
+    margin-bottom: 13px;
+}
+.item ion-icon{
+    position: absolute;
+    bottom: 16px;
+    right: 13px;
+    color: #32B72F;
+    font-size: 16px;
+}
+.rodape{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 92px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.rodape button{
+    border: none;
+    background-color: #CBCBCB;
+    border-radius: 50px;
+    height: 61px;
+    width: 88%;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+    letter-spacing: 0.018em;
+    color: #FFFFFF;
+}
+.selecionado{
+    box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.25), inset 0px 0px 0px 5px #32B72F;
+}
+.escondido{
+    display: none;
 }

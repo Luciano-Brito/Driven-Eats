@@ -159,3 +159,6 @@ main > div::-webkit-scrollbar{  /*esconder scroll Chrome, Safari and Opera*/
 .escondido{
     display: none;
 }
+.rodape .liberado{
+    background-color:#32B72F;
+}

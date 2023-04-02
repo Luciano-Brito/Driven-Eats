@@ -1,6 +1,7 @@
 let prato_selecionado = false;
 let sobremesa_selecionada = false;
 let bebida_selecionada = false;
+let telefone = "5587988156550"
 
 function selecionar(item){
     const pai = item.parentElement;
@@ -22,7 +23,28 @@ function selecionar(item){
     botao_pedir.innerText = `Selecione mais ${faltam} ${faltam > 1 ? "itens": "item"} para fechar o pedido`;
 
     if(faltam == 0){
+        botao_pedir.removeAttribute("disabled");
         botao_pedir.classList.add("liberado");
         botao_pedir.innerText = "Fechar pedido";
     }
+}
+function pedir(){
+    const selecionados = document.querySelectorAll(".selecionado"); //Encontra todos os elementos com a classe "selecionado"
+    let pratos = [];
+    let precos = [];
+    let total = 0;
+    selecionados.forEach(element => {
+        pratos.push(element.querySelector("p").innerText); //dentro dos elementos com a classe 'selecionado' seleciona o primeiro parágrafo (título)
+        precos.push(element.querySelector("p:nth-child(4)").innerText); //dentro dos elementos com a classe 'selecionado' seleciona o último parágrafo (preço)
+    });
+    precos.forEach(element => { //calcula o total
+        let temp = element.replace('R$ ','');
+        temp = temp.replace(',','.');
+        temp = Number(temp);
+        total += temp;
+    });
+    total = total.toFixed(2);
+    //total.toLocaleString('BRL');
+    let mensagem = `Olá, gostaria de fazer o pedido:\n- Prato: ${pratos[0]}\n- Bebida: ${pratos[1]}\n- Sobremesa: ${pratos[2]}\nTotal: R$ ${(total.toString()).replace('.',',')}`;
+    window.open(`https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`, "_blank")
 }

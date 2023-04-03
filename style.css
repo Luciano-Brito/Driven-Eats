@@ -155,12 +155,106 @@ main > div::-webkit-scrollbar{  /*esconder scroll Chrome, Safari and Opera*/
     letter-spacing: 0.018em;
     color: #FFFFFF;
 }
+.confirmacao{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.confirmacao .container{
+    height: fit-content;
+    width: 91%;
+    max-width: 518px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #50D074;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 9px;
+}
+.confirmacao .container > p{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    text-align: center;
+    margin-top: 21px;
+    margin-bottom: 12px;
+    color: #fff;
+}
+.confirmacao .container div{
+    width: 87%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 13px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: 0.018em;
+    color: #fff;
+}
+.confirmacao .container div span:nth-child(odd){
+    margin-right: 12px;
+}
+.confirmacao .container div span:nth-child(even){
+    min-width: fit-content;
+}
+.confirmacao .container div:nth-child(5){
+    font-weight: 700;
+}
+.confirmacao .container button:nth-child(6){
+    width: 87%;
+    min-height: 52px;
+    padding: 8px;
+    margin-top: 24px;
+    background-color: #fff;
+    color: #50D074;
+    border-radius: 100px;
+    border: none;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    text-align: center;
+    letter-spacing: 0.018em;
+}
+.confirmacao .container button:nth-child(7){
+    width: 87%;
+    min-height: 52px;
+    padding: 5px;
+    background: none;
+    border: none;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+    letter-spacing: 0.018em;
+    color: #fff;
+}
 .selecionado{
     box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.25), inset 0px 0px 0px 5px #32B72F;
 }
 .escondido{
-    display: none;
+    display: none !important;
 }
 .rodape .liberado{
     background-color:#32B72F;
 }
+.parar-scroll {
+    height: 100%;
+    overflow: hidden;
+  }

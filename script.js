@@ -3,6 +3,10 @@ let sobremesa_selecionada = false;
 let bebida_selecionada = false;
 let telefone = "5587988156550"
 
+let pratos = [];
+let precos = [];
+let total = 0;
+
 function selecionar(item){
     const pai = item.parentElement;
     const selecionado = pai.querySelector(".selecionado");
@@ -28,11 +32,15 @@ function selecionar(item){
         botao_pedir.innerText = "Fechar pedido";
     }
 }
-function pedir(){
-    const selecionados = document.querySelectorAll(".selecionado"); //Encontra todos os elementos com a classe "selecionado"
-    let pratos = [];
-    let precos = [];
-    let total = 0;
+function confirmacao(){
+    pratos = []; //redefine as variáveis
+    precos = [];
+    total = 0;
+    document.body.classList.add("parar-scroll");
+    (document.querySelector(".confirmacao")).classList.remove("escondido");
+    const botoes = document.querySelectorAll(".confirmacao button"); //seleciona os botoes
+    let selecionados = document.querySelectorAll(".selecionado"); //Encontra todos os elementos com a classe "selecionado"
+    const campos_texto = document.querySelectorAll(".confirmacao span");//Encontra todos os "span" dentro do elemento com a classe "confirmacao"
     selecionados.forEach(element => {
         pratos.push(element.querySelector("p").innerText); //dentro dos elementos com a classe 'selecionado' seleciona o primeiro parágrafo (título)
         precos.push(element.querySelector("p:nth-child(4)").innerText); //dentro dos elementos com a classe 'selecionado' seleciona o último parágrafo (preço)
@@ -44,6 +52,43 @@ function pedir(){
         total += temp;
     });
     total = total.toFixed(2);
+    let indice_preco = 0;
+    let indice_prato = 0;
+    campos_texto.forEach((element, index) => {
+        if(index%2 !== 0){ //se o indice do elemento for par (elementos da direita)
+            if(indice_preco == (precos.length)){//se todo o array dos preços já foi percorrido
+                element.innerText = `R$ ${(total.toString()).replace('.',',')}`;
+            }
+            else{
+                element.innerText = precos[indice_preco];
+                indice_preco ++;
+            }
+        }
+        else{ //senão (elementos da esquerda)
+            if(indice_prato == (pratos.length)){//se todo o array dos pratos já foi percorrido
+                element.innerText = "TOTAL";
+            }
+            else{
+                element.innerText = pratos[indice_prato];
+                indice_prato++;
+            }
+        }
+    });
+    botoes.forEach(element => {
+        element.removeAttribute("disabled")
+    });
+}
+function cancelar_pedido(){
+    document.body.classList.remove("parar-scroll");
+    (document.querySelector(".confirmacao")).classList.add("escondido");
+    const botoes = document.querySelectorAll(".confirmacao button"); //seleciona os botoes
+    botoes.forEach(element => {
+        element.setAttribute("disabled",'');
+    });
+}
+function pedir(){
+    console.log(pratos);
+    console.log(precos);
     let nome = prompt("Informe seu nome:");
     while(nome == ''){
         nome = prompt("Você precisa informar seu nome!");

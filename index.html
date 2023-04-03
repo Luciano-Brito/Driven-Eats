@@ -13,6 +13,17 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+    <div class="escondido confirmacao" data-test="confirm-order-modal">
+        <div class="container">
+            <p>Confirme seu pedido</p>
+            <div><span></span><span></span></div>
+            <div><span></span><span></span></div>
+            <div><span></span><span></span></div>
+            <div><span></span><span></span></div>
+            <button disabled onclick = "pedir()" data-test="confirm-order-btn">Tudo certo, pode pedir!</button>
+            <button disabled onclick="cancelar_pedido()" data-test="cancel-order-btn">Cancelar</button>
+        </div>
+    </div>
     <header>
         <div class="topo">
             <h1>DrivenEats</h1>
@@ -116,7 +127,7 @@
     </main>
     <footer>
         <div class="rodape">
-            <button onclick="pedir()"  data-test="order-btn" disabled>Selecione os 3 itens
+            <button onclick="confirmacao()"  data-test="order-btn" disabled>Selecione os 3 itens
                 para fechar o pedido</button>
         </div>
     </footer>

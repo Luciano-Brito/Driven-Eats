@@ -44,7 +44,14 @@ function pedir(){
         total += temp;
     });
     total = total.toFixed(2);
-    //total.toLocaleString('BRL');
-    let mensagem = `Olá, gostaria de fazer o pedido:\n- Prato: ${pratos[0]}\n- Bebida: ${pratos[1]}\n- Sobremesa: ${pratos[2]}\nTotal: R$ ${(total.toString()).replace('.',',')}`;
+    let nome = prompt("Informe seu nome:");
+    while(nome == ''){
+        nome = prompt("Você precisa informar seu nome!");
+    }
+    let endereco = prompt("Informe o endereço para entrega!");
+    while(endereco == ''){
+        endereco = prompt("Informe o endereço para que possamos fazer a entrega!");
+    }
+    const mensagem = `Olá, gostaria de fazer o pedido:\n- Prato: ${pratos[0]}\n- Bebida: ${pratos[1]}\n- Sobremesa: ${pratos[2]}\nTotal: R$ ${(total.toString()).replace('.',',')}\n\nNome: ${nome}\nEndereço: ${endereco}`;
     window.open(`https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`, "_blank")
 }

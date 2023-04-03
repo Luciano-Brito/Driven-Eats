@@ -19,9 +19,9 @@ function selecionar(item){
     item.classList.add("selecionado");
     item.querySelector("ion-icon").classList.remove("escondido");
 
-    if(pai.classList.contains("prato")) prato_selecionado = 1;
-    if(pai.classList.contains("sobremesa")) sobremesa_selecionada = 1;
-    if(pai.classList.contains("bebida")) bebida_selecionada = 1;
+    if(pai.classList.contains("prato")) {prato_selecionado = 1;}
+    if(pai.classList.contains("sobremesa")) {sobremesa_selecionada = 1;}
+    if(pai.classList.contains("bebida")) {bebida_selecionada = 1;}
 
     const faltam = categorias-prato_selecionado-sobremesa_selecionada-bebida_selecionada;
 

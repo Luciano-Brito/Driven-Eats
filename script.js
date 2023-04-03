@@ -1,11 +1,12 @@
-let prato_selecionado = false;
-let sobremesa_selecionada = false;
-let bebida_selecionada = false;
-let telefone = "5587988156550"
+let prato_selecionado = 0;
+let sobremesa_selecionada = 0;
+let bebida_selecionada = 0;
+const telefone = "5587988156550"
 
 let pratos = [];
 let precos = [];
 let total = 0;
+const categorias = (document.querySelectorAll("main > div")).length;
 
 function selecionar(item){
     const pai = item.parentElement;
@@ -18,15 +19,15 @@ function selecionar(item){
     item.classList.add("selecionado");
     item.querySelector("ion-icon").classList.remove("escondido");
 
-    prato_selecionado = pai.classList.contains("prato") ? true : prato_selecionado;
-    sobremesa_selecionada = pai.classList.contains("sobremesa") ? true : sobremesa_selecionada;
-    bebida_selecionada = pai.classList.contains("bebida") ? true : bebida_selecionada;
+    if(pai.classList.contains("prato")) prato_selecionado = 1;
+    if(pai.classList.contains("sobremesa")) sobremesa_selecionada = 1;
+    if(pai.classList.contains("bebida")) bebida_selecionada = 1;
 
-    const faltam = 3-prato_selecionado-sobremesa_selecionada-bebida_selecionada;
+    const faltam = categorias-prato_selecionado-sobremesa_selecionada-bebida_selecionada;
 
     botao_pedir.innerText = `Selecione mais ${faltam} ${faltam > 1 ? "itens": "item"} para fechar o pedido`;
 
-    if(faltam == 0){
+    if(faltam === 0){
         botao_pedir.removeAttribute("disabled");
         botao_pedir.classList.add("liberado");
         botao_pedir.innerText = "Fechar pedido";
@@ -56,7 +57,7 @@ function confirmacao(){
     let indice_prato = 0;
     campos_texto.forEach((element, index) => {
         if(index%2 !== 0){ //se o indice do elemento for par (elementos da direita)
-            if(indice_preco == (precos.length)){//se todo o array dos preços já foi percorrido
+            if(indice_preco === (precos.length)){//se todo o array dos preços já foi percorrido
                 element.innerText = `R$ ${(total.toString()).replace('.',',')}`;
             }
             else{
@@ -65,7 +66,7 @@ function confirmacao(){
             }
         }
         else{ //senão (elementos da esquerda)
-            if(indice_prato == (pratos.length)){//se todo o array dos pratos já foi percorrido
+            if(indice_prato === (pratos.length)){//se todo o array dos pratos já foi percorrido
                 element.innerText = "TOTAL";
             }
             else{
@@ -87,14 +88,12 @@ function cancelar_pedido(){
     });
 }
 function pedir(){
-    console.log(pratos);
-    console.log(precos);
     let nome = prompt("Informe seu nome:");
-    while(nome == ''){
+    while(nome === ''){
         nome = prompt("Você precisa informar seu nome!");
     }
     let endereco = prompt("Informe o endereço para entrega!");
-    while(endereco == ''){
+    while(endereco === ''){
         endereco = prompt("Informe o endereço para que possamos fazer a entrega!");
     }
     const mensagem = `Olá, gostaria de fazer o pedido:\n- Prato: ${pratos[0]}\n- Bebida: ${pratos[1]}\n- Sobremesa: ${pratos[2]}\nTotal: R$ ${(total.toString()).replace('.',',')}\n\nNome: ${nome}\nEndereço: ${endereco}`;
